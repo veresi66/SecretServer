@@ -4,7 +4,7 @@ A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com
 
 ## Az API általam írt/módosított fájlai:
 
-- app\Http\Controllers\SecretController.php
+- ** app\Http\Controllers\SecretController.php **
 - app\Models\Secret.php
 - database\migrations\2021_10_01_062411_create_secrets_table.php
 - routes\api.php

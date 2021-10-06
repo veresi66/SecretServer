@@ -1,6 +1,6 @@
 ## SecretServer API Laravel alapokon
 
-A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com/ngabesz-wse/secret-server-task</a> feladat általam elképzelt megoldása. Nincs túlbonyolítva, csak az egyszerű megoldásra törekedtem. A megvalósításra Laravel keretrendszer került felhasználásra. A feladata kiírásában kér hostolási lehetőség megvalósítva a <a href="https://www.alwaysdata.com/">alwaysdata</a> szolgáltatásain keresztűl. A megvalósításra Laravel keretrendszer került felhasználásra.
+A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com/ngabesz-wse/secret-server-task</a> feladat általam elképzelt megoldása. Nincs túlbonyolítva, csak az egyszerű megoldásra törekedtem. A megvalósításra Laravel keretrendszer került felhasználásra. A feladat kiírásában kér hostolási lehetőség megvalósítva a <a href="https://www.alwaysdata.com/">alwaysdata</a> szolgáltatásain keresztűl.
 
 ## Az API általam írt/módosított fájlai:
 
@@ -12,3 +12,7 @@ A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com
 ## Az API elérése
 
 <a href="http://veresi66.alwaysdata.net/secret/api/v1/secret/">http://veresi66.alwaysdata.net/secret/api/v1/secret/</a>
+
+## Az API tesztelésének lehetőségei
+
+Az API teszteléséhez készült egy egyszerű kis tesztprogram, mely elérhető weben a http://veresi66.alwaysdata.net/secret/api-test oldalon keresztül

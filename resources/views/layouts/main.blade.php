@@ -13,8 +13,9 @@
 </head>
 <body>
     <div id="container">
-@yield('content');
-        <div class="row">
+        <h1 class="alert alert-info row">SecretServer API teszt</h1>
+@yield('content')
+        <div class="row alert alert-info">
             <footer class="col-12">
                 <!-- Lábléc helye -->
                 <p><span>Copyright: Veress Imre, 2021 -</span></p>

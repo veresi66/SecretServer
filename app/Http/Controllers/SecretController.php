@@ -9,6 +9,13 @@ use DateInterval;
 use XMLWriter;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * SecretServer API controller
+ * 
+ * @author    Veress Imre <veress.imre.debrecen@gmail.com>
+ * @copyright (c) 2021-, Veress Imre
+ * @version   1.0
+ */
 class SecretController extends Controller
 {
     /**
@@ -19,7 +26,7 @@ class SecretController extends Controller
     public function index()
     {
         // Az összes adat lekérése
-        return  Secret::all();
+        return  response('Invalid request!', 403);
     }
 
     /**
@@ -39,7 +46,6 @@ class SecretController extends Controller
         if ($validator->fails()) {
             return response('Invalid input', 405);
         }
-
 
         // Az adat eltárolása
         $secret = new Secret();
@@ -81,10 +87,10 @@ class SecretController extends Controller
                 $secret->save();
 
                 return $this->returnData($request, $secret);
-            } else {
-                return response('Secret not found!', 404);
             }
         }
+
+        return response('Secret not found!', 404);
     }
 
     /**
@@ -97,7 +103,7 @@ class SecretController extends Controller
     public function update(Request $request, $hash)
     {
         // Az adat módosítása
-        return false;
+        return  response('Invalid request!', 403);
     }
 
     /**
@@ -109,9 +115,15 @@ class SecretController extends Controller
     public function destroy($hash)
     {
         // Az adat törlése
-        return false;
+        return  response('Invalid request!', 403);
     }
 
+    /**
+     * Generate  XML file
+     *
+     * @param  \App\Models\Secret $data
+     * @return string
+     */
     private function generateXML($data)
     {
         $xmlWriter = new XMLWriter();
@@ -126,6 +138,14 @@ class SecretController extends Controller
         return $xmlWriter->outputMemory();
     }
 
+    /**
+     * Create XML row from data (recursive function)
+     * 
+     * @param XMLWriter $xmlWriter
+     * @param \App\Models\Secret $data
+     * @return true
+     * 
+     */
     private function createXMLElement(XMLWriter $xmlWriter, $data)
     {
         if (gettype($data) === 'array') {
@@ -142,12 +162,18 @@ class SecretController extends Controller
         return true;
     }
 
+    /**
+     * Write response with a unique header
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Models\Secret 
+     * @return \Illuminate\Http\Response
+     */
     private function returnData(Request $request, Secret $secret) 
     {
         if ($request->header('Accept') == 'application/json') {
             return response(json_encode($secret->getAttributes()))
-                ->header('Content-Type', 'application/json')
-                ->header('Access-Control-Allow-Origin', '*');
+                ->header('Content-Type', 'application/json');
         } else if ($request->header('Accept') == 'application/xml') {
             return response($this->generateXML($secret->getAttributes()))
                 ->header('Content-Type', 'application/xml');

@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Validator;
  */
 class SecretController extends Controller
 {
+    private array $validAcceptHeader = [
+        'application/json',
+        'application/xml'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +44,7 @@ class SecretController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'secret' => 'required|string|max:255',
-            'expiresAt' =>'numeric|gt:0',
+            'expiresAt' => 'numeric|gt:0',
             'expireAfterViews' => 'required|numeric|gt:0'
         ]);
 
@@ -50,7 +55,7 @@ class SecretController extends Controller
         // Az adat eltárolása
         $secret = new Secret();
         $now = new DateTime();
-        
+
         if ((int)$request->expireAfter !== 0) {
             $expiresAt = new DateTime();
             $expiresAt->add(new DateInterval('PT' . $request->expireAfter . 'M'));
@@ -79,14 +84,18 @@ class SecretController extends Controller
     {
         $secret = Secret::find($hash);
         if ($secret) {
-            $now = new DateTime();
-            $end = new DateTime($secret->expiresAt);
+            if (array_search($request->header('Accept'), $this->validAcceptHeader) !== false) {
+                $now = new DateTime();
+                $end = new DateTime($secret->expiresAt);
 
-            if (($secret->reamingViews > 0) && (($secret->expiresAt === null) || ($now <= $end))) {
-                $secret->reamingViews = (int) $secret->reamingViews - 1;
-                $secret->save();
+                if (($secret->reamingViews > 0) && (($secret->expiresAt === null) || ($now <= $end))) {
+                    $secret->reamingViews = (int) $secret->reamingViews - 1;
+                    $secret->save();
 
-                return $this->returnData($request, $secret);
+                    return $this->returnData($request, $secret);
+                }
+            } else {
+                return response('The request contains an invalid "Accept" header!', '405');
             }
         }
 
@@ -169,7 +178,7 @@ class SecretController extends Controller
      * @param \App\Models\Secret 
      * @return \Illuminate\Http\Response
      */
-    private function returnData(Request $request, Secret $secret) 
+    private function returnData(Request $request, Secret $secret)
     {
         if ($request->header('Accept') == 'application/json') {
             return response(json_encode($secret->getAttributes()))
@@ -177,6 +186,6 @@ class SecretController extends Controller
         } else if ($request->header('Accept') == 'application/xml') {
             return response($this->generateXML($secret->getAttributes()))
                 ->header('Content-Type', 'application/xml');
-        }        
+        }
     }
 }

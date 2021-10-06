@@ -15,7 +15,7 @@ use App\Http\Controllers\ApiTestController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('apiTest.index');
 });
 
 

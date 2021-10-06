@@ -15,7 +15,7 @@ function getAllSecrets() {
         }
     }
 
-    fetchMethod('http://veresi66.alwaysdata.net/secret/api/v1/secret', fetchOptions, reqType);
+    fetchMethod('https://veresi66.alwaysdata.net/secret/api/v1/secret', fetchOptions, reqType);
 }
 
 function postSecret() {
@@ -33,7 +33,7 @@ function postSecret() {
         body: JSON.stringify(data)
     }
 
-    fetchMethod('http://veresi66.alwaysdata.net/secret/api/v1/secret', fetchOptions, reqType);
+    fetchMethod('https://veresi66.alwaysdata.net/secret/api/v1/secret', fetchOptions, reqType);
 }
 
 function getSecret() {
@@ -48,7 +48,7 @@ function getSecret() {
         }
     }
 
-    fetchMethod(`http://veresi66.alwaysdata.net/secret/api/v1/secret/${hash}`, fetchOptions, reqType);
+    fetchMethod(`https://veresi66.alwaysdata.net/secret/api/v1/secret/${hash}`, fetchOptions, reqType);
 }
 
 function fetchMethod(url, fetchOptions, reqType) {

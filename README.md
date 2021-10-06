@@ -1,64 +1,30 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## SecretServer API Laravel alapokon
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com/ngabesz-wse/secret-server-task</a> feladat általam elképzelt megoldása. Nincs túlbonyolítva, csak az egyszerű megoldásra törekedtem. A megvalósításra Laravel keretrendszer került felhasználásra. A feladat kiírásában kér hostolási lehetőség megvalósítva a <a href="https://www.alwaysdata.com/">alwaysdata</a> szolgáltatásain keresztűl.
 
-## About Laravel
+A feladatban csak az egyedi lekérdezés, illetve a lekérdezések rögzítésének lehetősége volt meghatározva, így az esetleges más típusú kérések (PUT, DELETE, illetve az összes tétel lekérdezése) "403 - Illegal request!" üzenettel tér vissza! 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Az API általam írt/módosított fájlai:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **app\Http\Controllers\SecretController.php**
+- **app\Models\Secret.php**
+- **database\migrations\2021_10_01_062411_create_secrets_table.php**
+- **routes\api.php (módosítva)**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Az API elérése
 
-## Learning Laravel
+**https://veresi66.alwaysdata.net/secret/api/v1/secret/**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Az API tesztelésének lehetőségei
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Az API teszteléséhez készült egy egyszerű kis tesztprogram, mely elérhető weben a https://veresi66.alwaysdata.net/secret/api-test oldalon keresztül. De mondhatni, ugyanarról a szerverről könnyű, megoldani, ezért a \testPage mappa tartalma a saját számítógépre másolva, egy JavaScript képes böngészővel szintén tesztelhető az API.
+Amennyiben olyan kérés érkezik az API felé, mely nem tartalmaz "Accept" fejlécet, vagy nem olyan fejlécet tartalmaz, melyre fel van készítve, akkor "405 - The request contains an invalid "Accept" header!" üzenet a válasz. A teszt oldalhoz a Laravel keretrendszer, illetve Bootstrap, jQuery, JavaScript, HTML5, CSS3 technikák keültek felhasználásra.
 
-## Laravel Sponsors
+## A tesztprogram általam írt/módosított részei
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **app\Http\Controllers\ApiTestController.php**
+- **resources\views\layouts\main.blade.php**
+- **resources\views\apiTest\index.blade.php**
+- **routes\web.php (módosítva)**
+- **public\scripts\vip.js**
+- **public\styles\vip.css**

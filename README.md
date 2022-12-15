@@ -12,7 +12,7 @@ Share the code: Upload the code to your GitHub account and share with us.
 
 ## SecretServer API Laravel alapokon
 
-A <a href="https://github.com/ngabesz-wse/secret-server-task">https://github.com/ngabesz-wse/secret-server-task</a> feladat általam elképzelt megoldása. Nincs túlbonyolítva, csak az egyszerű megoldásra törekedtem. A megvalósításra Laravel keretrendszer került felhasználásra. A feladat kiírásában kér hostolási lehetőség megvalósítva a <a href="https://www.alwaysdata.com/">alwaysdata</a> (sajnos ezt már törölték) szolgáltatásain keresztűl.
+A feladat általam elképzelt megoldása. Nincs túlbonyolítva, csak az egyszerű megoldásra törekedtem. A megvalósításra Laravel keretrendszer került felhasználásra. A feladat kiírásában kér hostolási lehetőség megvalósítva a <a href="https://www.alwaysdata.com/">alwaysdata</a> (sajnos ezt már törölték) szolgáltatásain keresztűl.
 
 A feladatban csak az egyedi lekérdezés, illetve a lekérdezések rögzítésének lehetősége volt meghatározva, így az esetleges más típusú kérések (PUT, DELETE, illetve az összes tétel lekérdezése) "403 - Illegal request!" üzenettel tér vissza! 
 
